@@ -19,5 +19,33 @@ public class PolicyHandler {
 
     @StreamListener(KafkaProcessor.INPUT)
     public void whatever(@Payload String eventString) {}
+
+    @StreamListener(
+        value = KafkaProcessor.INPUT,
+        condition = "headers['type']=='Refunded'"
+    )
+    public void wheneverRefunded_PointDecrease(@Payload Refunded refunded) {
+        Refunded event = refunded;
+        System.out.println(
+            "\n\n##### listener PointDecrease : " + refunded + "\n\n"
+        );
+
+        // Sample Logic //
+        Point.pointDecrease(event);
+    }
+
+    @StreamListener(
+        value = KafkaProcessor.INPUT,
+        condition = "headers['type']=='Paid'"
+    )
+    public void wheneverPaid_PointIncrease(@Payload Paid paid) {
+        Paid event = paid;
+        System.out.println(
+            "\n\n##### listener PointIncrease : " + paid + "\n\n"
+        );
+
+        // Sample Logic //
+        Point.pointIncrease(event);
+    }
 }
 //>>> Clean Arch / Inbound Adaptor
