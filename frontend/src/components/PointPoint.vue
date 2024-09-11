@@ -34,14 +34,7 @@
                     text
                     @click="save"
                 >
-                    PointDecrease
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="save"
-                >
-                    PointIncrease
+                저장
                 </v-btn>
                 <v-btn
                     color="primary"
