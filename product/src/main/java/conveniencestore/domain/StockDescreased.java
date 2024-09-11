@@ -13,6 +13,10 @@ public class StockDescreased extends AbstractEvent {
 
     private Long id;
 
+    public StockDescreased(Inventory aggregate) {
+        super(aggregate);
+    }
+
     public StockDescreased() {
         super();
     }

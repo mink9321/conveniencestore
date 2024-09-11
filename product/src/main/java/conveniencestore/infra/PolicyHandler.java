@@ -29,8 +29,9 @@ public class PolicyHandler {
         System.out.println(
             "\n\n##### listener StockDecrease : " + paid + "\n\n"
         );
-        // Sample Logic //
 
+        // Sample Logic //
+        Inventory.stockDecrease(event);
     }
 
     @StreamListener(
@@ -42,8 +43,9 @@ public class PolicyHandler {
         System.out.println(
             "\n\n##### listener StockIncrease : " + refunded + "\n\n"
         );
-        // Sample Logic //
 
+        // Sample Logic //
+        Inventory.stockIncrease(event);
     }
 }
 //>>> Clean Arch / Inbound Adaptor
