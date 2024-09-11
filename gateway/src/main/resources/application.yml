@@ -1,0 +1,92 @@
+server:
+  port: 8088
+
+---
+
+spring:
+  profiles: default
+  cloud:
+    gateway:
+#<<< API Gateway / Routes
+      routes:
+        - id: scan
+          uri: http://localhost:8082
+          predicates:
+            - Path=/undefined/**, 
+        - id: point
+          uri: http://localhost:0
+          predicates:
+            - Path=, 
+        - id: mypage
+          uri: http://localhost:0
+          predicates:
+            - Path=, 
+        - id: product
+          uri: http://localhost:0
+          predicates:
+            - Path=, 
+        - id: payment
+          uri: http://localhost:0
+          predicates:
+            - Path=/undefined/**, 
+        - id: frontend
+          uri: http://localhost:8080
+          predicates:
+            - Path=/**
+#>>> API Gateway / Routes
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+
+---
+
+spring:
+  profiles: docker
+  cloud:
+    gateway:
+      routes:
+        - id: scan
+          uri: http://scan:8080
+          predicates:
+            - Path=/undefined/**, 
+        - id: point
+          uri: http://point:8080
+          predicates:
+            - Path=, 
+        - id: mypage
+          uri: http://mypage:8080
+          predicates:
+            - Path=, 
+        - id: product
+          uri: http://product:8080
+          predicates:
+            - Path=, 
+        - id: payment
+          uri: http://payment:8080
+          predicates:
+            - Path=/undefined/**, 
+        - id: frontend
+          uri: http://frontend:8080
+          predicates:
+            - Path=/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+server:
+  port: 8080
